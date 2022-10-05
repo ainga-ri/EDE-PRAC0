@@ -2,7 +2,7 @@ package edu.uoc.ds.adt;
 
 public class PR0Array {
     private final int POSITIONS = 50;
-
+    private int steps = 0;
     private int[] array;
 
     public PR0Array() {
@@ -17,14 +17,18 @@ public class PR0Array {
         return (this.array);
     }
 
+    public int getSteps() {
+        return (steps);
+    }
+
     public int getIndexOf(int number) {
         boolean found;
         int index;
 
         index = 0;
         found = false;
-        while (!found && index < this.array.length) {
-            if (number == this.array[index])
+        while (!found && index < getArray().length) {
+            if (number == getArray()[index])
                 found = true;
             index++;
         }
@@ -34,7 +38,24 @@ public class PR0Array {
             return (-1);
     }
 
+    private int recursiveBinarySearch(int[] array, int number, int low, int high) {
+        if (low > high)
+            return (-1);
+        else {
+            steps++;
+            int mid = (low + high) / 2;
+            if (number == array[mid])
+                return (mid);
+            else if (number > array[mid])
+                return (recursiveBinarySearch(array, number, mid + 1, high));
+            else
+                return (recursiveBinarySearch(array, number, low, mid - 1));
+        }
+    }
+
     public int binarySearch(int number) {
-        return (getIndexOf(number));
+        int low = 0;
+        int high = getArray().length - 1;
+        return (recursiveBinarySearch(getArray(), number, low, high));
     }
 }

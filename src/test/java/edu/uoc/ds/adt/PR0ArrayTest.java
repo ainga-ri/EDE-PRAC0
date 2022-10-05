@@ -3,8 +3,7 @@ package edu.uoc.ds.adt;
 import org.junit.After;
 import org.junit.Before;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class PR0ArrayTest {
 
@@ -45,6 +44,7 @@ public class PR0ArrayTest {
         assertEquals(-1, index);
 
         index = this.pr0Array.binarySearch(14);
-        assertEquals(7, index); }
+        assertEquals(7, index);
+    }
 
 }
